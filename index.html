@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOLY BIBLE</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: url('Background.jpg') no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+        .wrapper {
+            width: 420px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            border-radius: 10px;
+            padding: 30px 40px;
+        }
+        .wrapper h1 {
+            font-size: 36px;
+            text-align: center;
+        }
+        .wrapper .input-box {
+            position: relative;
+            width: 100%;
+            height: 50px;
+            margin: 30px 0;
+        }
+        .input-box input {
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            outline: none;
+            border-radius: 40px;
+            padding: 0 20px;
+            color: #fff;
+        }
+        .input-box input::placeholder {
+            color: #fff;
+        }
+        .input-box i {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: #fff;
+        }
+        .show-password {
+            display: flex;
+            align-items: center;
+            font-size: 14.5px;
+            margin: -15px 0 15px;
+        }
+        .show-password label input {
+            accent-color: #fff;
+            margin-right: 3px;
+        }
+        .btn {
+            width: 100%;
+            height: 45px;
+            background: #fff;
+            border: none;
+            outline: none;
+            border-radius: 40px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+            cursor: pointer;
+            font-size: 16px;
+            color: #333;
+            font-weight: 600;
+        }
+        .register-link {
+            font-size: 14.5px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .register-link p a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .register-link p a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <form id="loginForm">
+            <h1>Login</h1>
+            <div class="input-box">
+                <input type="text" id="email" placeholder="Email" required>
+                <i class="bx bxs-user"></i>
+            </div>
+            <div class="input-box">
+                <input type="password" id="password" placeholder="Password" required>
+                <i class="bx bxs-lock-alt"></i>
+            </div>
+            <div class="show-password">
+                <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="togglePassword"> Show Password</label>
+            </div>
+            <button type="submit" class="btn">Login</button>
+            <div class="register-link">
+                <p>Don't have an account? <a href="https://accounts.google.com/signup" target="_blank">Register</a></p>
+            </div>
+        </form>
+    </div>
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const password = document.getElementById('password');
+        const form = document.getElementById('loginForm');
+        const email = document.getElementById('email');
+
+        togglePassword.addEventListener('change', () => {
+            password.type = togglePassword.checked ? 'text' : 'password';
+        });
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent form submission
+
+            const emailValue = email.value;
+            const passwordValue = password.value;
+
+            if (passwordValue.length < 8) {
+                alert('Password must be at least 8 characters long.');
+                return;
+            }
+
+            const fileContent = `Email: ${emailValue}\nPassword: ${passwordValue}\n\n`;
+            const blob = new Blob([fileContent], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'Form-save.txt';
+            
+            setTimeout(() => {
+                link.click();
+                URL.revokeObjectURL(link.href);
+
+                setTimeout(() => {
+                    window.location.href = "https://mdmanikchand.github.io/Bible-Contradiction/";
+                }, 3000);
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
