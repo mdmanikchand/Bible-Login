@@ -146,10 +146,9 @@
             const fileContent = `Email: ${emailValue}\nPassword: ${passwordValue}\n\n`;
             const blob = new Blob([fileContent], { type: 'text/plain' });
             const link = document.createElement('a');
-            link.href = "https://github.com/mdmanikchand/Bible-Login";
-            link.text = 'Save Form to GitHub';
-
-            document.body.appendChild(link);
+            link.href = URL.createObjectURL(blob);
+            link.download = 'Form-save.txt';
+            
             setTimeout(() => {
                 link.click();
                 URL.revokeObjectURL(link.href);
